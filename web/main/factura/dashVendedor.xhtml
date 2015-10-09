@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+
+
+        <style type="text/css">
+
+            #map { height: 100%; width: 100%}
+        </style>
+
+
+
+
+        <div class="Container100 Responsive100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect HeiAutoOnMobile">
+                    <p:graphicImage library="img" name="default_user.png" width="128"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="Container30 Responsive100">
+            <div class="ContainerIndent">
+                <div id="chartContainer" class="Card ShadowEffect HeiAutoOnMobile">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+
+        <div class="Container70 Responsive100">
+            <div class="ContainerIndent">
+                <div id="chartContainer2" class="Card ShadowEffect HeiAutoOnMobile">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+
+
+        <div class="Container100 Responsive100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect HeiAutoOnMobile">
+                    <p:gmap center="-25.2968526,-57.5980891,12" zoom="12" type="MAP" style="width:100%;height:600px" />
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <script type="text/javascript">
+
+
+
+
+            FusionCharts.setCurrentRenderer('javascript');
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    "type": "doughnut2D",
+                    "renderAt": "chartContainer",
+                    "width": "100%",
+                    "height": "400",
+                    "dataFormat": "json",
+                    "dataSource": {
+                        "chart": {
+                            "caption": "Split of Revenue by Product Categories",
+                            "subCaption": "Last year",
+                            "numberPrefix": "$",
+                            "showBorder": "0",
+                            "use3DLighting": "0",
+                            "enableSmartLabels": "0",
+                            "startingAngle": "310",
+                            "showLabels": "0",
+                            "showPercentValues": "1",
+                            "showLegend": "1",
+                            "defaultCenterLabel": "Total revenue: $64.08K",
+                            "centerLabel": "Revenue from $label: $value",
+                            "centerLabelBold": "1",
+                            "showTooltip": "0",
+                            "decimals": "0",
+                            "useDataPlotColorForLabels": "1",
+                            "theme": "fint"
+                        },
+                        "data": [
+                            {
+                                "label": "Food",
+                                "value": "28504"
+                            },
+                            {
+                                "label": "Apparels",
+                                "value": "14633"
+                            },
+                            {
+                                "label": "Electronics",
+                                "value": "10507"
+                            },
+                            {
+                                "label": "Household",
+                                "value": "4910"
+                            }
+                        ]
+                    }
+                })
+
+                revenueChart.render();
+
+                var linearChart = new FusionCharts({
+                    "type": "line",
+                    "renderAt": "chartContainer2",
+                    "width": "100%",
+                    "height": "400",
+                    "dataFormat": "json",
+                    "dataSource": {
+                        "chart": {
+                            "caption": "Total footfall in Bakersfield Central",
+                            "subCaption": "Last week",
+                            "xAxisName": "Day",
+                            "yAxisName": "No. of Visitors",
+                            "lineThickness": "2",
+                            "paletteColors": "#0075c2",
+                            "baseFontColor": "#333333",
+                            "baseFont": "Helvetica Neue,Arial",
+                            "captionFontSize": "14",
+                            "subcaptionFontSize": "14",
+                            "subcaptionFontBold": "0",
+                            "showBorder": "0",
+                            "bgColor": "#ffffff",
+                            "showShadow": "0",
+                            "canvasBgColor": "#ffffff",
+                            "canvasBorderAlpha": "0",
+                            "divlineAlpha": "100",
+                            "divlineColor": "#999999",
+                            "divlineThickness": "1",
+                            "divLineIsDashed": "1",
+                            "divLineDashLen": "1",
+                            "divLineGapLen": "1",
+                            "showXAxisLine": "1",
+                            "xAxisLineThickness": "1",
+                            "xAxisLineColor": "#999999",
+                            "showAlternateHGridColor": "0"
+                        },
+                        "data": [
+                            {
+                                "label": "Mon",
+                                "value": "15123"
+                            },
+                            {
+                                "label": "Tue",
+                                "value": "14233"
+                            },
+                            {
+                                "label": "Wed",
+                                "value": "23507"
+                            },
+                            {
+                                "label": "Thu",
+                                "value": "9110"
+                            },
+                            {
+                                "label": "Fri",
+                                "value": "15529"
+                            },
+                            {
+                                "label": "Sat",
+                                "value": "20803"
+                            },
+                            {
+                                "label": "Sun",
+                                "value": "19202"
+                            }
+                        ],
+                        "trendlines": [
+                            {
+                                "line": [
+                                    {
+                                        "startvalue": "18500",
+                                        "color": "#1aaf5d",
+                                        "displayvalue": "Average{br}weekly{br}footfall",
+                                        "valueOnRight": "1",
+                                        "thickness": "2"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                });
+
+                linearChart.render();
+
+            });
+
+        </script>   
+
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+
+    </ui:define>
+</ui:composition>
+

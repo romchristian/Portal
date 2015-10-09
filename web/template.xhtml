@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+
+
+        <h:outputStylesheet library="css" name="material.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+    <h:body>
+        <div id="layout-topbar">
+            <div id="logo" class="Fleft">
+                <div style="text-align: center;color: white;font-weight: bold;font-family: 'Roboto', sans-serif; font-size: 16pt;margin-top: 10px">
+                    PORTAL - APPS
+                </div>
+
+
+                <div style="text-align: center;color: white;font-weight: bold;font-family: 'Roboto', sans-serif; font-size: 10pt;">
+                    Tabacos del Paraguay S.A
+                </div>
+            </div>
+            <div style="float: right; padding-top: 10px;padding-right: 10px">
+                <p:graphicImage library="img" name="salir.png"/>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id="wrapperIndent">
+                <div id="layout-menu-cover" class="Animated05">
+                    <ul class="layout-menu">
+                        <li>
+                            
+                            <a href="#">Configuraciones</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="layout-portlets-cover">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
+                            <div class="Card ShadowEffect">
+                                <ui:insert name="bo dy"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </h:body>
+</html>
+

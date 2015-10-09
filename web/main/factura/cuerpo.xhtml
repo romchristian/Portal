@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+    <div class="Container100 Responsive100">
+        <div class="ContainerIndent">
+            <div class="Card ShadowEffect HeiAutoOnMobile">
+                <h2 class="CardTopic"><i class="fa fa-plus-square Fs25 Fleft MarRight10 "></i>#{titulo}</h2>
+                <div class="Separator"/>
+                <h:form>
+
+                    <p:outputPanel id="panel">
+
+                        <div style="width: 100%;text-align: right">
+                            <span class="FontRobotoBold Fs25">Nº #{facturaBean.actual.numero}</span>
+                        </div>
+
+                        <div style="display: table; width: 100%">
+                            <div style="display: table-cell; width: 50%">
+                                <h:panelGrid columns="2" columnClasses="gridColumn1,gridColumn2" >
+                                    <h:outputText value="Emision: " styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="#{facturaBean.actual.fecha}" styleClass="FontRobotoBold">
+                                        <f:convertDateTime locale="#{formato.locale}" pattern="dd/MM/yyyy" timeZone="America/Asuncion"/>
+                                    </h:outputText>
+                                    <h:outputText value="Cod. Cliente: " styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="#{facturaBean.actual.clienteId}" styleClass="FontRobotoBold"/>
+                                    <h:outputText value="Razon Social: " styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="#{facturaBean.actual.razonSocial}" styleClass="FontRobotoBold"/>
+                                    <h:outputText value="Nombre Comercial: " styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="#{facturaBean.actual.nombreComercial}" styleClass="FontRobotoBold"/>
+                                </h:panelGrid>
+                            </div>
+                            <div style="display: table-cell; width: 50%">
+                                <h:panelGrid columns="2" columnClasses="gridColumn1,gridColumn2" >
+                                    <h:outputText value="Vendedor: "  styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="#{facturaBean.actual.nombreVendedor}" styleClass="FontRobotoBold"/>
+                                    <h:outputText value="Condición de Pago: " styleClass="FontRobotoRegular"/>
+                                    <h:outputText value="CONTADO" styleClass="FontRobotoBold"/>
+                                </h:panelGrid>
+                            </div>
+
+                        </div>
+
+
+                        <p:dataTable value="#{facturaBean.actual.detalles}" var="d">
+                            <p:column headerText="#">
+                                <h:outputText value="#{d.linea}"/>
+                            </p:column>
+                            <p:column headerText="Desc">
+                                <h:outputText value="#{d.descripcion}"/>
+                            </p:column>
+                            <p:column headerText="Cant.">
+                                <h:outputText value="#{d.cantidad}">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="U.M.">
+                                <h:outputText value="#{d.unidadMedidaDesc}">
+
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="P.U.">
+                                <h:outputText value="#{d.precio}">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Total">
+                                <h:outputText value="#{d.total}">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </p:outputPanel>
+
+                    <div style="display: table;width: 100%">
+                        <div style="display: table-cell;text-align: right">
+
+                            <div style="float: right">
+                                <h:panelGrid columns="2">
+                                <h:outputText value="TOTAL IVA: "  styleClass="FontRobotoRegular Fs20"/>
+                                <h:outputText value="#{facturaBean.actual.impuesto}" styleClass="FontRobotoBold Fs20">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                                <h:outputText value="SUB TOTAL: " styleClass="FontRobotoRegular Fs20"/>
+                                <h:outputText value="#{facturaBean.actual.subtotal}" styleClass="FontRobotoBold Fs20">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                                <h:outputText value="TOTAL" styleClass="FontRobotoRegular Fs20"/>
+                                <h:outputText value="#{facturaBean.actual.total}" styleClass="FontRobotoBold Fs20">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                                <h:outputText value="TOTAL PAGO" styleClass="FontRobotoRegular Fs20"/>
+                                <h:outputText value="#{facturaBean.actual.pago}" styleClass="FontRobotoBold Fs20">
+                                    <f:convertNumber locale="#{formato.locale}"/>
+                                </h:outputText>
+                            </h:panelGrid>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+
+                    <br/>
+
+
+
+
+                    <p:button value="Atras"  styleClass="Fleft PurpleButton" outcome="listado"/>
+                    <br/>
+
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

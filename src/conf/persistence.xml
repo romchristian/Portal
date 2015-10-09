@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ServicioMovilPU" transaction-type="JTA">
+    <jta-data-source>PortalGeneralDS</jta-data-source>
+    <class>py.com.palermo.app.portalgeneral.modelo.Auditoria</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Factura</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.FacturaCobro</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.FacturaDetalle</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Pdvmovil</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Rol</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Usuario</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      
+        
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="GCMovilPU" transaction-type="JTA">
+    <jta-data-source>GCMovilDS</jta-data-source>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Cliente</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Cobranzas</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.CobranzasAplicacionPago</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.CobranzasCobros</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.CobranzasDetalle</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Destinos</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Encuesta</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Facturas</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.FacturasAplicacionPago</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.FacturasCobros</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.FacturasDetalle</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Mensajes</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Opcion</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Pregunta</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Relevamientos</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Respuesta</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Retenciones</class>
+    <class>py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Vendedor</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>
