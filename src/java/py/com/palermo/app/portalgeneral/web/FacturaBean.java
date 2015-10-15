@@ -71,6 +71,7 @@ public class FacturaBean extends BeanGenerico<Factura> implements Serializable {
     }
 
      public void addMarker() {
+
         double lat =  Double.parseDouble(getActual().getGpsLat());
         double lng =  Double.parseDouble(getActual().getGpsLong());
         String title = "";

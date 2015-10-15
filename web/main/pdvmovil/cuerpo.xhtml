@@ -28,6 +28,14 @@
                             <p:inputText value="#{pdvmovilBean.actual.deviceid}" id="iddispositivo" required="true" rendered="#{not(contexto == 'vista')}"/>
                             <h:outputText value="#{pdvmovilBean.actual.deviceid}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="iddispositivo"/>
+                            
+                            <p:outputLabel value="Estado" for="estado" />
+                            <p:selectOneMenu value="#{pdvmovilBean.actual.estado}" id="estado" rendered="#{not(contexto == 'vista')}">
+                                <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO"/>
+                                <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO"/>
+                            </p:selectOneMenu>
+                            <h:outputText value="#{pdvmovilBean.actual.estado}" rendered="#{(contexto == 'vista')}"/>
+                            <p:message for="estado"/>
                         </h:panelGrid>
                     </p:outputPanel>
 
