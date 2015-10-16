@@ -56,7 +56,7 @@ public class ABMServiceBean implements ABMService {
     @Override
     public void delete(Object t) {
         preparaRegistro(t, "REMOVE");
-        this.em.merge(t);
+        t = this.em.merge(t);
         this.em.remove(t);
     }
 

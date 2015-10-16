@@ -26,11 +26,21 @@
                                      rowKey="#{p.id}"
                                      selectionMode="single">
 
-                            <p:ajax event="rowSelect"   update=":formList:createButton :formList:viewButton"/>
+                            <p:ajax event="rowSelect"   update=":formList:createButton :formList:viewButton :formList:map" listener="#{pdvmovilBean.addMarker()}"/>
                             <p:ajax event="rowUnselect" update=":formList:createButton :formList:viewButton"/>
 
-                           
 
+                            <p:column headerText="Empresa">
+                                <h:outputText value="#{p.empresa}"/>
+                            </p:column>
+                            <p:column headerText="Solicitante">
+                                <h:outputText value="#{p.nombre} - #{p.apellido}"/>
+                            </p:column>
+                            <p:column headerText="Fecha">
+                                <h:outputText value="#{p.fecha}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Asuncion"/>
+                                </h:outputText>
+                            </p:column>
                             <p:column headerText="Nombre">
                                 <h:outputText value="#{p.descripcion}"/>
                             </p:column>
@@ -48,6 +58,19 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="Container100 Responsive100">
+                <div class="ContainerIndent">
+                    <div class="Card ShadowEffect HeiAutoOnMobile">
+                        <p:gmap center="-25.2968526,-57.5980891,12" zoom="12" type="MAP" style="width:100%;height:600px" id="map"
+                                model="#{pdvmovilBean.emptyModel}" widgetVar="map"/>
+                    </div>
+
+                </div>
+            </div>
+
+            <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
         </h:form>
 
 

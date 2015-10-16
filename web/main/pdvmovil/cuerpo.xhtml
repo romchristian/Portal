@@ -44,7 +44,7 @@
 
                     <p:commandButton value="Crear" action="#{pdvmovilBean.create()}" styleClass="Fleft GreenButton" update="panel" rendered="#{(contexto == 'creacion')}"/>
                     <p:commandButton value="Guardar" action="#{pdvmovilBean.edit()}" styleClass="Fleft BlueButton" update="panel" rendered="#{(contexto == 'edicion')}"/>
-                    <p:commandButton value="Eliminar" action="#{pdvmovilBean.edit()}" styleClass="Fleft RedButton" update="panel" rendered="#{(contexto == 'vista')}"/>
+                    <p:commandButton value="Eliminar" action="#{pdvmovilBean.remove()}" styleClass="Fleft RedButton" update="panel" rendered="#{(contexto == 'vista')}"/>
                     <p:button value="Editar"  styleClass="Fleft BlueButton" outcome="edita" rendered="#{(contexto == 'vista')}">
                         <f:param name="id" value="#{pdvmovilBean.actual.id}"/>
                     </p:button>
