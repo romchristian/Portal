@@ -60,6 +60,15 @@ public class Vendedor implements Serializable {
     private Short vendedorespreciopromocion;
     private Short vendedorestipo;
     private String vendedorpuertocom;
+    private String deviceid;
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
 
     public Vendedor() {
     }
@@ -366,6 +375,6 @@ public class Vendedor implements Serializable {
 
     @Override
     public String toString() {
-        return "py.com.palermo.serviciopocket.gcmovil.entity.Vendedor[ vendedorPK=" + vendedorid + " ]";
+        return vendedornombre;
     }
 }

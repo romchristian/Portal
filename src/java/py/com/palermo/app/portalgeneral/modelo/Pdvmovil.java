@@ -194,7 +194,7 @@ public class Pdvmovil implements Serializable, Auditable {
 
     @Override
     public String toString() {
-        return "py.com.palermo.app.portalgeneral.modelo.Pdvmovil[ id=" + id + " ]";
+        return descripcion;
     }
 
 }

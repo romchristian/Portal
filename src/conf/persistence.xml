@@ -9,11 +9,10 @@
     <class>py.com.palermo.app.portalgeneral.modelo.Pdvmovil</class>
     <class>py.com.palermo.app.portalgeneral.modelo.Rol</class>
     <class>py.com.palermo.app.portalgeneral.modelo.Usuario</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.RolCustom</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
-      
-        
     </properties>
   </persistence-unit>
   <persistence-unit name="GCMovilPU" transaction-type="JTA">

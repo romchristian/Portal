@@ -9,25 +9,31 @@
     <ui:define name="content">
 
         <h:form id="formList">
+            
+            <p:growl id="mensajes" autoUpdate="true"/>
             <div class="Container100 Responsive100">
                 <div class="ContainerIndent">
                     <div class="Card ShadowEffect HeiAutoOnMobile">
                         <h2 class="CardTopic"><i class="icon-google132 Fs20 Fleft MarRight10"></i>LISTADO DE PDV MÓVILES
+                            <p:commandButton id="activarButton" value="Activar/Desactivar"  styleClass="RedButton Fright" action="#{pdvmovilBean.toggleActivacion()}"
+                                             disabled="#{empty pdvmovilBean.actual.id}" update="tabla"/>
                             <p:button id="createButton" value="Nuevo" outcome="nuevo" styleClass="GreenButton Fright"/>
                             <p:button id="viewButton"   value="Ver" outcome="vista" disabled="#{empty pdvmovilBean.actual.id}" styleClass="Button Fright">
                                 <f:param name="id" value="#{pdvmovilBean.actual.id}"/>
                             </p:button>
+                             <p:commandButton value="Resfresh" update="tabla" icon="fa fa-refresh" styleClass="Fright"/>
                         </h2>
+                        
                         <div class="Separator"/>
-
 
                         <p:dataTable value="#{pdvmovilBean.findAll()}" var="p" paginator="true" rows="20" paginatorPosition="bottom" reflow="true"
                                      selection="#{pdvmovilBean.actual}"
                                      rowKey="#{p.id}"
-                                     selectionMode="single">
+                                     selectionMode="single"
+                                     id="tabla">
 
-                            <p:ajax event="rowSelect"   update=":formList:createButton :formList:viewButton :formList:map" listener="#{pdvmovilBean.addMarker()}"/>
-                            <p:ajax event="rowUnselect" update=":formList:createButton :formList:viewButton"/>
+                            <p:ajax event="rowSelect"   update=":formList:createButton :formList:viewButton :formList:map :formList:activarButton" listener="#{pdvmovilBean.addMarker()}"/>
+                            <p:ajax event="rowUnselect" update=":formList:createButton :formList:viewButton :formList:activarButton"/>
 
 
                             <p:column headerText="Empresa">

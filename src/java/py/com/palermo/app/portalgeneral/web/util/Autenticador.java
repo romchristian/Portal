@@ -71,7 +71,7 @@ public class Autenticador implements Serializable {
 //                credencial.setSupervisor(s);
 //            }
             
-            R = "/index.xhtml?faces-redirect=true";
+            R = "/main/factura/listado.xhtml?faces-redirect=true";
         } catch (ServletException ex) {
             Logger.getLogger(Autenticador.class.getName()).log(Level.SEVERE, null, ex);
             username = null;

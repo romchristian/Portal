@@ -70,16 +70,25 @@ public class FacturaBean extends BeanGenerico<Factura> implements Serializable {
         return new Factura();
     }
 
-     public void addMarker() {
+    public void addMarker() {
 
-        double lat =  Double.parseDouble(getActual().getGpsLat());
-        double lng =  Double.parseDouble(getActual().getGpsLong());
+        Double lat = null;
+        Double lng = null;
         String title = "";
-        
-        emptyModel = new DefaultMapModel();
-        org.primefaces.model.map.Marker marker = new org.primefaces.model.map.Marker(new LatLng(lat, lng), title);
-        emptyModel.addOverlay(marker);
-          
-     
+
+        try {
+            lat = Double.parseDouble(getActual().getGpsLat());
+            lng = Double.parseDouble(getActual().getGpsLong());
+        } catch (Exception e) {
+        }
+
+        if (lat != null && lng != null) {
+            emptyModel = new DefaultMapModel();
+            org.primefaces.model.map.Marker marker = new org.primefaces.model.map.Marker(new LatLng(lat, lng), title);
+            emptyModel.addOverlay(marker);
+        }else{
+            emptyModel = new DefaultMapModel();
+        }
+
     }
 }

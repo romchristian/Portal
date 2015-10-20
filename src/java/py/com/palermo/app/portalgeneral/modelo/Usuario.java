@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -53,6 +54,10 @@ public class Usuario implements Serializable, Auditable {
     private String username;
     @ManyToMany(mappedBy = "usuarios")
     private List<Rol> roles;
+    private String referenciaExterna;
+    
+    @ManyToOne
+    private RolCustom rolcustom;
 
     @OneToOne
     private Pdvmovil pdvMovil;
@@ -60,10 +65,22 @@ public class Usuario implements Serializable, Auditable {
     public Usuario() {
     }
 
+    
+    
     public Usuario(Long id) {
         this.id = id;
     }
 
+    public String getReferenciaExterna() {
+        return referenciaExterna;
+    }
+
+    public void setReferenciaExterna(String referenciaExterna) {
+        this.referenciaExterna = referenciaExterna;
+    }
+
+    
+    
     @Override
     public Long getId() {
         return id;
@@ -124,6 +141,17 @@ public class Usuario implements Serializable, Auditable {
         this.pdvMovil = pdvMovil;
     }
 
+    public RolCustom getRolcustom() {
+        return rolcustom;
+    }
+
+    @XmlTransient
+    public void setRolcustom(RolCustom rolcustom) {
+        this.rolcustom = rolcustom;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

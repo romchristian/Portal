@@ -15,6 +15,7 @@ import py.com.palermo.app.portalgeneral.modelo.Pdvmovil;
 import py.com.palermo.app.portalgeneral.servicio.PdvmovilDAO;
 import py.com.palermo.app.portalgeneral.servicio.util.AbstractDAO;
 import py.com.palermo.app.portalgeneral.web.util.BeanGenerico;
+import py.com.palermo.app.portalgeneral.web.util.JsfUtil;
 
 /**
  *
@@ -36,8 +37,6 @@ public class PdvmovilBean extends BeanGenerico<Pdvmovil> implements Serializable
         this.emptyModel = emptyModel;
     }
 
-    
-    
     @Override
     public AbstractDAO<Pdvmovil> getEjb() {
         return ejb;
@@ -47,17 +46,34 @@ public class PdvmovilBean extends BeanGenerico<Pdvmovil> implements Serializable
     public Pdvmovil getNuevo() {
         return new Pdvmovil();
     }
-    
-    
-     public void addMarker() {
 
-        
+    public void addMarker() {
+
         String title = "";
+
+        Double lat = getActual().getLat();
+        Double longitud = getActual().getLongitud();
+
+        if (lat != null && longitud != null) {
+            emptyModel = new DefaultMapModel();
+            org.primefaces.model.map.Marker marker = new org.primefaces.model.map.Marker(new LatLng(lat, longitud), title);
+            emptyModel.addOverlay(marker);
+        }else{
+            JsfUtil.addSuccessMessage("No se registro la ubicación de este dispositivo!");
+        }
+
+    }
+    
+    public void toggleActivacion(){
+        if(getActual() != null && getActual().getEstado() != null){
+            if(getActual().getEstado().compareToIgnoreCase("ACTIVO")==0){
+                getActual().setEstado("INACTIVO");
+                edit();
+            }else if(getActual().getEstado().compareToIgnoreCase("INACTIVO")==0){
+                getActual().setEstado("ACTIVO");
+                edit();
+            }
+        }
         
-        emptyModel = new DefaultMapModel();
-        org.primefaces.model.map.Marker marker = new org.primefaces.model.map.Marker(new LatLng(getActual().getLat(), getActual().getLongitud()), title);
-        emptyModel.addOverlay(marker);
-          
-     
     }
 }

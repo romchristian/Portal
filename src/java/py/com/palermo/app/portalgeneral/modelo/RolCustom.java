@@ -6,35 +6,31 @@
 package py.com.palermo.app.portalgeneral.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author cromero
  */
 @Entity
-@Table(name = "rol")
-@XmlRootElement
+@Table(name = "rolcustom")
 @NamedQueries({
-    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")})
-public class Rol implements Serializable {
+    @NamedQuery(name = "Rolcustom.findAll", query = "SELECT r FROM RolCustom r")})
+public class RolCustom implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,25 +40,14 @@ public class Rol implements Serializable {
     @Size(max = 255)
     @Column(name = "nombre")
     private String nombre;
-    @JoinTable(name = "rol_usuario", joinColumns = {
-        @JoinColumn(name = "roles_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuarios_id", referencedColumnName = "id")})
-    @ManyToMany
-    private List<Usuario> usuarios;
-    @JoinColumn(name = "padre_id", referencedColumnName = "id")
-    @ManyToOne
-    private Rol padreId;
-    
-    @JoinTable(name = "rolcustom_rol", joinColumns = {
-        @JoinColumn(name = "roles_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "rolescustom_id", referencedColumnName = "id")})
-    @ManyToMany
-    private List<RolCustom> rolescustom;
 
-    public Rol() {
+    @ManyToMany(mappedBy = "rolescustom")
+    private List<Rol> roles;
+
+    public RolCustom() {
     }
 
-    public Rol(Long id) {
+    public RolCustom(Long id) {
         this.id = id;
     }
 
@@ -74,8 +59,6 @@ public class Rol implements Serializable {
         this.id = id;
     }
 
-    
-
     public String getNombre() {
         return nombre;
     }
@@ -84,35 +67,15 @@ public class Rol implements Serializable {
         this.nombre = nombre;
     }
 
-    
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public List<Rol> getRoles() {
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+        return roles;
     }
 
-    @XmlTransient
-    public void setUsuarios(List<Usuario> usuarioList) {
-        this.usuarios = usuarioList;
-    }
-
-    public List<RolCustom> getRolescustom() {
-        return rolescustom;
-    }
-
-    @XmlTransient
-    public void setRolescustom(List<RolCustom> rolescustom) {
-        this.rolescustom = rolescustom;
-    }
-
-    
-    
-
-
-    public Rol getPadreId() {
-        return padreId;
-    }
-
-    public void setPadreId(Rol padreId) {
-        this.padreId = padreId;
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -125,10 +88,10 @@ public class Rol implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rol)) {
+        if (!(object instanceof RolCustom)) {
             return false;
         }
-        Rol other = (Rol) object;
+        RolCustom other = (RolCustom) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -139,5 +102,5 @@ public class Rol implements Serializable {
     public String toString() {
         return nombre;
     }
-    
+
 }
