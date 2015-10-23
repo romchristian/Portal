@@ -19,8 +19,6 @@ import com.unboundid.ldap.sdk.LDAPSearchException;
 import com.unboundid.ldap.sdk.SearchResult;
 import com.unboundid.ldap.sdk.SearchResultEntry;
 import com.unboundid.ldap.sdk.SearchScope;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
