@@ -61,7 +61,19 @@ public class Usuario implements Serializable, Auditable {
 
     @OneToOne
     private Pdvmovil pdvMovil;
+    
+    private String territorio;
 
+    public String getTerritorio() {
+        return territorio;
+    }
+
+    public void setTerritorio(String territorio) {
+        this.territorio = territorio;
+    }
+
+    
+    
     public Usuario() {
     }
 

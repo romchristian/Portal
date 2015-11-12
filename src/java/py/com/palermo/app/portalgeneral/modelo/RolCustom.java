@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
 @Table(name = "rolcustom")
 @NamedQueries({
     @NamedQuery(name = "Rolcustom.findAll", query = "SELECT r FROM RolCustom r")})
-public class RolCustom implements Serializable {
+public class RolCustom implements Serializable, Auditable {
 
     private static final long serialVersionUID = 1L;
     @Id

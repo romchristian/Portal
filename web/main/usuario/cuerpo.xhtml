@@ -35,11 +35,30 @@
                             </p:selectOneMenu>
                             <p:message for="vendedor"/>
 
-                            <p:outputLabel value="Dispositivo" for="pdv"/>
-                            <p:selectOneMenu value="#{usuarioBean.pdvmovilSelecionado}" id="pdv">
-                                <f:selectItems value="#{pdvmovilBean.itemsAvailableSelectOne}"/>
+                            
+
+                            <p:outputLabel value="Rol" for="rol"/>
+                            <p:selectOneMenu value="#{usuarioBean.actual.rolcustom}" id="rol">
+                                <p:ajax event="change" process="@this" update="@(.territorio)"/>
+                                <f:selectItems value="#{rolCustomBean.itemsAvailableSelectOne}"/>
                             </p:selectOneMenu>
                             <p:message for="pdv"/>
+
+
+                            <p:outputLabel value="Territorio" for="territorio"/>
+                            <p:selectOneMenu value="#{usuarioBean.actual.territorio}" id="territorio">
+                                <f:selectItem itemLabel="--" itemValue=""/>
+                                <f:selectItem itemLabel="ASUNCION" itemValue="ASUNCION"/>
+                                <f:selectItem itemLabel="ALTO PARANA" itemValue="ALTO PARANA"/>
+                                <f:selectItem itemLabel="INTERIOR" itemValue="INTERIOR"/>
+                                <f:selectItem itemLabel="ENCARNACION - ITAPUA" itemValue="ENCARNACION - ITAPUA"/>
+                                <f:selectItem itemLabel="CENTRAL" itemValue="CENTRAL"/>
+                                <f:selectItem itemLabel="INTERIOR NORTE" itemValue="INTERIOR NORTE"/>
+                                <f:selectItem itemLabel="PEDRO JUAN CABALLERO" itemValue="PEDRO JUAN CABALLERO"/>
+                                <f:selectItem itemLabel="INTERIOR CENTRO" itemValue="INTERIOR CENTRO"/>
+                            </p:selectOneMenu>
+                            <p:message for="territorio"/>
+
 
 
                         </h:panelGrid>

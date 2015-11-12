@@ -4,6 +4,7 @@
  */
 package py.com.palermo.app.portalgeneral.servicio;
 
+import java.util.ArrayList;
 import py.com.palermo.app.portalgeneral.servicio.util.QueryParameter;
 import py.com.palermo.app.portalgeneral.servicio.util.ABMService;
 import py.com.palermo.app.portalgeneral.servicio.util.AbstractDAO;
@@ -12,7 +13,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 import py.com.palermo.app.portalgeneral.modelo.Factura;
+import py.com.palermo.app.portalgeneral.web.util.Credencial;
 
 /**
  *
@@ -21,6 +24,9 @@ import py.com.palermo.app.portalgeneral.modelo.Factura;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class FacturaDAO extends AbstractDAO<Factura> {
+
+    @Inject
+    private Credencial credencial;
 
     @EJB(beanName = "ABMServiceBean")
     private ABMService abmService;
@@ -47,7 +53,26 @@ public class FacturaDAO extends AbstractDAO<Factura> {
 
     @Override
     public List<Factura> findAll() {
-        return abmService.getEM().createQuery("select obj from Factura obj").getResultList();
+        List<Factura> R = new ArrayList<>();
+            System.out.println("usuario : " + credencial.getUsuario());
+        
+        if (credencial.getUsuario() != null && credencial.getUsuario().getRolcustom() != null) {
+            System.out.println("Rol : " + credencial.getUsuario().getRolcustom().getNombre());
+            
+            if (credencial.getUsuario().getRolcustom().getNombre().compareToIgnoreCase("Gerente") == 0) {
+                R = abmService.getEM().createQuery("select obj from Factura obj ").getResultList();
+            } else if (credencial.getUsuario().getRolcustom().getNombre().compareToIgnoreCase("Supervisor Territorio") == 0) {
+                R = abmService.getEM().createQuery("select obj from Factura obj WHERE OBJ.territorio = :territorio")
+                        .setParameter("territorio", credencial.getUsuario().getTerritorio())
+                        .getResultList();
+            } else if (credencial.getUsuario().getRolcustom().getNombre().compareToIgnoreCase("Vendedor") == 0) {
+                R = abmService.getEM().createQuery("select obj from Factura obj WHERE OBJ.usuario = :usuario")
+                        .setParameter("usuario", credencial.getUsuario().getUsername())
+                        .getResultList();
+            }
+        }
+
+        return R;
     }
 
     @Override

@@ -47,8 +47,14 @@
                             <p:column headerText="Nro" style="text-align: center" filterBy="#{f.numero}" filterMatchMode="contains">
                                 <h:outputText value="#{f.numero}"/>
                             </p:column>
-                            <p:column headerText="Vendedor" filterBy="#{f.nombreVendedor}" filterMatchMode="contains">
-                                <h:outputText value="#{f.nombreVendedor}" />
+                            <p:column headerText="Usuario" filterBy="#{f.usuario}" filterMatchMode="contains">
+                                <h:outputText value="#{f.usuario}" />
+                            </p:column>
+                            <p:column headerText="Territorio" filterBy="#{f.territorio}" filterMatchMode="contains">
+                                <h:outputText value="#{f.territorio}" />
+                            </p:column>
+                            <p:column headerText="Zona" filterBy="#{f.zona}" filterMatchMode="contains">
+                                <h:outputText value="#{f.zona}" />
                             </p:column>
                             <p:column headerText="Cod Cliente" style="text-align: center" filterBy="#{f.clienteId}" filterMatchMode="contains">
                                 <h:outputText value="#{f.clienteId}">

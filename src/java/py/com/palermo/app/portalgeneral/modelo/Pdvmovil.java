@@ -46,6 +46,8 @@ public class Pdvmovil implements Serializable, Auditable {
     @Size(max = 255)
     @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "modelo")
+    private String modelo;
     @Size(max = 255)
     @Column(name = "deviceid")
     private String deviceid;
@@ -171,6 +173,16 @@ public class Pdvmovil implements Serializable, Auditable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+    
+    
 
     @Override
     public int hashCode() {

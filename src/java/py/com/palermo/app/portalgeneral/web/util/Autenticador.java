@@ -17,6 +17,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import py.com.palermo.app.portalgeneral.modelo.Usuario;
+import py.com.palermo.app.portalgeneral.servicio.UsuarioDAO;
 
 /**
  *
@@ -28,6 +30,8 @@ public class Autenticador implements Serializable {
 
     @Inject
     private Credencial credencial;
+    @EJB
+    private UsuarioDAO usuarioDAO;
     
     
     private String username;
@@ -66,10 +70,10 @@ public class Autenticador implements Serializable {
             System.out.println("Pass: " + password);
             request.login(username, password);
            
-           // Supervisor s = servicioGCMovil.getSupervisorPorUser(username);
-//            if(s != null){
-//                credencial.setSupervisor(s);
-//            }
+            Usuario u = usuarioDAO.find(username,null);
+            if(u != null){
+                credencial.setUsuario(u);
+            }
             
             R = "/main/factura/listado.xhtml?faces-redirect=true";
         } catch (ServletException ex) {

@@ -52,16 +52,19 @@ public class Factura implements Serializable {
     private Integer vendedorId;
     private String gpsLat;
     private String gpsLong;
-    
-    private String rucEmpresa;   
+
+    private String rucEmpresa;
     private String razonSocial;
     private String nombreComercial;
     private String rucCliente;
     private String nombreVendedor;
+    private String usuario;
+    private String zona;
+    private String territorio;
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FacturaDetalle> detalles;
-    
+
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FacturaCobro> cobros;
 
@@ -72,9 +75,6 @@ public class Factura implements Serializable {
     public void setCobros(List<FacturaCobro> cobros) {
         this.cobros = cobros;
     }
-    
-    
-    
 
     public List<FacturaDetalle> getDetalles() {
         return detalles;
@@ -307,8 +307,30 @@ public class Factura implements Serializable {
     public void setNombreVendedor(String nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
     }
-    
-    
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
+    public String getTerritorio() {
+        return territorio;
+    }
+
+    public void setTerritorio(String territorio) {
+        this.territorio = territorio;
+    }
 
     @Override
     public int hashCode() {
