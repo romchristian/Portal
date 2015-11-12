@@ -7,6 +7,7 @@ package py.com.palermo.app.portalgeneral.servicio;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Vendedor;
@@ -49,5 +50,7 @@ public class VendedorDAO {
         v.setDeviceid(deviceId);
         em.merge(v);
     }
+    
+    
 
 }

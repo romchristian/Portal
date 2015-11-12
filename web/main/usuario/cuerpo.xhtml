@@ -20,28 +20,23 @@
                             <h:outputText value="#{usuarioBean.actual.nombre}" rendered="#{(contexto == 'vista')}"/>
                             <p:inputText value="#{usuarioBean.actual.nombre}" required="true" id="nombre" rendered="#{not(contexto == 'vista')}" size="30"/>
                             <p:message for="nombre"/>
+                            
                             <p:outputLabel value="Email" for="mail"/>
                             <p:inputText value="#{usuarioBean.actual.email}" id="mail" rendered="#{not(contexto == 'vista')}" size="30"/>
                             <h:outputText value="#{usuarioBean.actual.email}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="mail"/>
+                            
                             <p:outputLabel value="Usuario" for="username"/>
                             <p:inputText value="#{usuarioBean.actual.username}" id="username" required="true" rendered="#{not(contexto == 'vista')}" size="30"/>
                             <h:outputText value="#{usuarioBean.actual.username}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="username"/>
 
                             <p:outputLabel value="Vendedor relacionado" for="vendedor"/>
-                            <p:selectOneMenu value="#{usuarioBean.vendedorSelecciando}" id="vendedor">
+                            <p:selectOneMenu value="#{usuarioBean.actual.referenciaExterna}" id="vendedor">
                                 <f:selectItems value="#{vendedorBean.itemsAvailableVendedor}"/>
                             </p:selectOneMenu>
                             <p:message for="vendedor"/>
-
-                            <p:outputLabel value="Dispositivo" for="pdv"/>
-                            <p:selectOneMenu value="#{usuarioBean.pdvmovilSelecionado}" id="pdv">
-                                <f:selectItems value="#{pdvmovilBean.itemsAvailableSelectOne}"/>
-                            </p:selectOneMenu>
-                            <p:message for="pdv"/>
-
-
+                            
                         </h:panelGrid>
                     </p:outputPanel>
 
