@@ -12,6 +12,7 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -61,6 +62,17 @@ public class Vendedor implements Serializable {
     private Short vendedorestipo;
     private String vendedorpuertocom;
     private String deviceid;
+    @Transient
+    private String ref;
+
+    public String getRef() {
+        ref = empresasid + "," + sucursalesid + "," + vendedorid;
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
 
     public String getDeviceid() {
         return deviceid;
@@ -375,6 +387,6 @@ public class Vendedor implements Serializable {
 
     @Override
     public String toString() {
-        return vendedornombre;
+        return empresasid+","+sucursalesid+","+vendedorid;
     }
 }
