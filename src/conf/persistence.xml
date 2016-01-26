@@ -10,6 +10,9 @@
     <class>py.com.palermo.app.portalgeneral.modelo.Rol</class>
     <class>py.com.palermo.app.portalgeneral.modelo.Usuario</class>
     <class>py.com.palermo.app.portalgeneral.modelo.RolCustom</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Cobranza</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Cobranzaaplicacionpago</class>
+    <class>py.com.palermo.app.portalgeneral.modelo.Cobranzadetalle</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

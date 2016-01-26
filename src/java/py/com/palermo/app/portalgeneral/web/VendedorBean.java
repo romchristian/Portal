@@ -38,4 +38,8 @@ public class VendedorBean implements Serializable {
     public Vendedor find(Long id) {
         return ejbVendedor.find(1, id.intValue());
     }
+    
+    public Vendedor find(Integer sucursalId,Long id) {
+        return ejbVendedor.find(sucursalId, id.intValue());
+    }
 }

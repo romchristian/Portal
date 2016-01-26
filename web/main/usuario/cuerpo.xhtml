@@ -32,23 +32,25 @@
                             <p:message for="username"/>
 
                             <p:outputLabel value="Vendedor relacionado" for="vendedor"/>
-                            <p:selectOneMenu value="#{usuarioBean.actual.referenciaExterna}" id="vendedor">
+                            <p:selectOneMenu value="#{usuarioBean.actual.referenciaExterna}" id="vendedor" rendered="#{not(contexto == 'vista')}">
                                 <f:selectItems value="#{vendedorBean.itemsAvailableVendedor}"/>
                             </p:selectOneMenu>
+                            <h:outputText value="#{usuarioBean.vendedorNombre}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="vendedor"/>
 
                             
 
                             <p:outputLabel value="Rol" for="rol"/>
-                            <p:selectOneMenu value="#{usuarioBean.actual.rolcustom}" id="rol">
+                            <p:selectOneMenu value="#{usuarioBean.actual.rolcustom}" id="rol" rendered="#{not(contexto == 'vista')}">
                                 <p:ajax event="change" process="@this" update="@(.territorio)"/>
                                 <f:selectItems value="#{rolCustomBean.itemsAvailableSelectOne}"/>
                             </p:selectOneMenu>
-                            <p:message for="pdv"/>
+                            <h:outputText value="#{usuarioBean.actual.rolcustom.nombre}" rendered="#{(contexto == 'vista')}"/>
+                            <p:message for="rol"/>
 
 
                             <p:outputLabel value="Territorio" for="territorio"/>
-                            <p:selectOneMenu value="#{usuarioBean.actual.territorio}" id="territorio">
+                            <p:selectOneMenu value="#{usuarioBean.actual.territorio}" id="territorio" rendered="#{not(contexto == 'vista')}">
                                 <f:selectItem itemLabel="--" itemValue=""/>
                                 <f:selectItem itemLabel="ASUNCION" itemValue="ASUNCION"/>
                                 <f:selectItem itemLabel="ALTO PARANA" itemValue="ALTO PARANA"/>
@@ -59,6 +61,7 @@
                                 <f:selectItem itemLabel="PEDRO JUAN CABALLERO" itemValue="PEDRO JUAN CABALLERO"/>
                                 <f:selectItem itemLabel="INTERIOR CENTRO" itemValue="INTERIOR CENTRO"/>
                             </p:selectOneMenu>
+                            <h:outputText value="#{usuarioBean.actual.territorio}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="territorio"/>
 
 
