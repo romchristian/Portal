@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import py.com.palermo.app.portalgeneral.modelo.Factura;
 import py.com.palermo.app.portalgeneral.servicio.FacturaDAO;
 import py.com.palermo.app.portalgeneral.servicio.util.AbstractDAO;
@@ -84,7 +85,7 @@ public class FacturaBean extends BeanGenerico<Factura> implements Serializable {
 
         if (lat != null && lng != null) {
             emptyModel = new DefaultMapModel();
-            org.primefaces.model.map.Marker marker = new org.primefaces.model.map.Marker(new LatLng(lat, lng), title);
+            Marker marker = new Marker(new LatLng(lat, lng), title);
             emptyModel.addOverlay(marker);
         }else{
             emptyModel = new DefaultMapModel();
