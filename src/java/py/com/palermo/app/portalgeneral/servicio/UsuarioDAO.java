@@ -87,7 +87,7 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
     public void migrar() throws LDAPException {
 
         LDAPConnection conn = getConnection();
-        List<SearchResultEntry> lista = getResults(conn, "cn=Users,dc=palermo,dc=com,dc=py", "(&(objectClass=User)(Department=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))");
+        List<SearchResultEntry> lista = getResults(conn, "OU=Usuarios,DC=TABACOS,DC=LOCAL", "(&(objectclass=person))");
 
         for (SearchResultEntry e : lista) {
             String username = e.getAttribute("sAMAccountName").getValue();
@@ -104,15 +104,15 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
 
     }
 
-    public LDAPConnection getConnection() throws com.unboundid.ldap.sdk.LDAPException {
-        return new LDAPConnection("172.16.10.2", 389, "ldapQuery@palermo.com.py", "ldapQuery123");
+    public static LDAPConnection getConnection() throws com.unboundid.ldap.sdk.LDAPException {
+        return new LDAPConnection("srv-tdpy-01.tabacos.local", 389, "ldapQuery@tabacos.local", "ldapQuery123");
     }
 
-    public List<SearchResultEntry> getResults(LDAPConnection connection, String baseDN, String filter) throws LDAPSearchException {
+     public static List<SearchResultEntry> getResults(LDAPConnection connection, String baseDN, String filter) throws LDAPSearchException {
         SearchResult searchResult;
 
         if (connection.isConnected()) {
-            searchResult = connection.search(baseDN, SearchScope.ONE, filter);
+            searchResult = connection.search(baseDN, SearchScope.SUB, filter);
             return searchResult.getSearchEntries();
         }
 
