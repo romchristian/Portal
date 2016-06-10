@@ -6,8 +6,13 @@
                 template="/WEB-INF/template.xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
 
+    <ui:define name="head">
+        <!--        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"></link>-->
+    </ui:define>
+
     <ui:define name="content">
 
+        <!--        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"/>-->
 
         <style type="text/css">
 
@@ -28,13 +33,162 @@
 
         <div class="Container30 Responsive100">
             <div class="ContainerIndent">
-                <div id="chartContainer" class="Card ShadowEffect HeiAutoOnMobile">FusionCharts XT will load here!</div>
+                <div class="Card ShadowEffect HeiAutoOnMobile">
+                    <div id="main" style="width: 98%;height:400px;" ></div>
+                    <script type="text/javascript">
+
+
+
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('main'));
+                        myChart.setTheme('macarons');
+
+                        option = {
+                            title: {
+                                text: '某站点用户访问来源',
+                                subtext: '纯属虚构',
+                                x: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'left',
+                                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: {show: true},
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {
+                                        show: true,
+                                        type: ['pie', 'funnel'],
+                                        option: {
+                                            funnel: {
+                                                x: '25%',
+                                                width: '50%',
+                                                funnelAlign: 'left',
+                                                max: 1548
+                                            }
+                                        }
+                                    },
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                }
+                            },
+                            calculable: true,
+                            series: [
+                                {
+                                    name: '访问来源',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: [
+                                        {value: 335, name: '直接访问'},
+                                        {value: 310, name: '邮件营销'},
+                                        {value: 234, name: '联盟广告'},
+                                        {value: 135, name: '视频广告'},
+                                        {value: 1548, name: '搜索引擎'}
+                                    ]
+                                }
+                            ]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    </script>
+                </div>
             </div>
         </div>
 
-        <div class="Container70 Responsive100">
+        <div class="Container70 Responsive100 ui-fluid">
             <div class="ContainerIndent">
-                <div id="chartContainer2" class="Card ShadowEffect HeiAutoOnMobile">FusionCharts XT will load here!</div>
+                <div class="Card ShadowEffect HeiAutoOnMobile">
+
+                    <div id="main2" style="width: 98%;height:400px;"></div>
+                    <script type="text/javascript">
+
+                        var myChart2 = echarts.init(document.getElementById('main2'));
+                        myChart2.setTheme('macarons');
+                        option2 = {
+                            title: {
+                                text: 'Grafico historico de ventas',
+                                subtext: 'Metas'
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data: ['Hombre', 'Mujer']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: {show: true},
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {show: true, type: ['line', 'bar']},
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                }
+                            },
+                            calculable: true,
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value'
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: 'Hombre',
+                                    type: 'bar',
+                                    data: #{dashboardBean.datosHombres},
+                                    markPoint: {
+                                        data: [
+                                            {type: 'max', name: 'Maximo'},
+                                            {type: 'min', name: 'Minimo'}
+                                        ]
+                                    },
+                                    markLine: {
+                                        data: [
+                                            {type: 'average', name: 'Promedio'}
+                                        ]
+                                    }
+                                },
+                                {
+                                    name: 'Mujer',
+                                    type: 'bar',
+                                    data: #{dashboardBean.datosMujeres},
+                                    markPoint: {
+                                        data: [
+                                            {name: 'Maximo', value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18},
+                                            {name: 'Minimo', value: 2.3, xAxis: 11, yAxis: 3}
+                                        ]
+                                    },
+                                    markLine: {
+                                        data: [
+                                            {type: 'max', name: 'Maximo'},
+                                            {type: 'min', name: 'Minimo'},
+                                            {type: 'average', name: 'Promedio'},
+                                        ]
+                                    }
+                                }
+                            ]
+                        };
+
+                        myChart2.setOption(option2);
+                    </script>
+                </div>
+
+
             </div>
         </div>
 

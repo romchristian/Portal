@@ -28,7 +28,7 @@
                             <p:ajax event="rowSelect"   update=":formList:createButton :formList:viewButton"/>
                             <p:ajax event="rowUnselect" update=":formList:createButton :formList:viewButton"/>
 
-                            <p:column headerText="Nombre">
+                            <p:column headerText="Nombre" filterBy="#{u.nombre}" filterMatchMode="contains">
                                 <h:outputText value="#{u.nombre}"/>
                             </p:column>
                             <p:column headerText="Usuario">
