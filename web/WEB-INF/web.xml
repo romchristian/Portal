@@ -77,6 +77,8 @@
         <extension>svg#fontawesomeregular</extension>
         <mime-type>image/svg+xml</mime-type>
     </mime-mapping>
+    
+    
     <security-constraint>
         <display-name>ConstraintIndex</display-name>
         <web-resource-collection>
