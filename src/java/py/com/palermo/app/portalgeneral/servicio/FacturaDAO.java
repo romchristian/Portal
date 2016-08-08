@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
+import py.com.palermo.app.portalgeneral.impl.gestioncomercial.modelo.Vendedor;
 import py.com.palermo.app.portalgeneral.modelo.Factura;
 import py.com.palermo.app.portalgeneral.web.util.Credencial;
 
@@ -66,14 +67,17 @@ public class FacturaDAO extends AbstractDAO<Factura> {
                         .setParameter("territorio", credencial.getUsuario().getTerritorio())
                         .getResultList();
             } else if (credencial.getUsuario().getRolcustom().getNombre().compareToIgnoreCase("Vendedor") == 0) {
-                R = abmService.getEM().createQuery("select obj from Factura obj WHERE OBJ.usuario = :usuario")
-                        .setParameter("usuario", credencial.getUsuario().getUsername())
+                R = abmService.getEM().createQuery("select obj from Factura obj WHERE UPPER(OBJ.usuario) = :usuario")
+                        .setParameter("usuario", credencial.getUsuario().getUsername().trim().toUpperCase())
                         .getResultList();
             }
         }
 
         return R;
     }
+    
+    
+    
 
     @Override
     public List<Factura> findAll(String query, QueryParameter params) {
