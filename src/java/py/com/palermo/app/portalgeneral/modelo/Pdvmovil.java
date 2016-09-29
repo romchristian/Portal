@@ -59,6 +59,8 @@ public class Pdvmovil implements Serializable, Auditable {
     private String empresa;
     private String nombre;
     private String apellido;
+    @Column(name = "password")
+    private String password;
     @Column(name = "lat")
     private Double lat;
     @Column(name = "long")
@@ -72,6 +74,14 @@ public class Pdvmovil implements Serializable, Auditable {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {
@@ -106,8 +116,6 @@ public class Pdvmovil implements Serializable, Auditable {
         this.longitud = longitud;
     }
 
-   
-
     public Date getFecha() {
         return fecha;
     }
@@ -116,8 +124,6 @@ public class Pdvmovil implements Serializable, Auditable {
         this.fecha = fecha;
     }
 
-    
-    
     public Pdvmovil() {
     }
 
@@ -181,8 +187,6 @@ public class Pdvmovil implements Serializable, Auditable {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-    
-    
 
     @Override
     public int hashCode() {

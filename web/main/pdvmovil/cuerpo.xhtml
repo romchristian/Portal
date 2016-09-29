@@ -24,6 +24,10 @@
                             <p:inputText value="#{pdvmovilBean.actual.cuentaemail}" id="mail" rendered="#{not(contexto == 'vista')}"/>
                             <h:outputText value="#{pdvmovilBean.actual.cuentaemail}" rendered="#{(contexto == 'vista')}"/>
                             <p:message for="mail"/>
+                            <p:outputLabel value="Cuenta Mail Password" for="password"/>
+                            <p:inputText value="#{pdvmovilBean.actual.password}" id="password" rendered="#{not(contexto == 'vista')}"/>
+                            <h:outputText value="#{pdvmovilBean.actual.password}" rendered="#{(contexto == 'vista')}"/>
+                            <p:message for="password"/>
                             <p:outputLabel value="Id dispositivo" for="iddispositivo"/>
                             <p:inputText value="#{pdvmovilBean.actual.deviceid}" id="iddispositivo" required="true" rendered="#{not(contexto == 'vista')}"/>
                             <h:outputText value="#{pdvmovilBean.actual.deviceid}" rendered="#{(contexto == 'vista')}"/>
